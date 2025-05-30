@@ -1,0 +1,32 @@
+def main():
+    conversions = {
+        "1": {"desc": "Inches to Centimeters", "func": lambda x: x * 2.54, "unit": "cm"},
+        "2": {"desc": "Centimeters to Inches", "func": lambda x: x / 2.54, "unit": "in"},
+        "3": {"desc": "Miles to Kilometers", "func": lambda x: x * 1.60934, "unit": "km"},
+        "4": {"desc": "Kilometers to Miles", "func": lambda x: x / 1.60934, "unit": "mi"},
+        "5": {"desc": "Pounds to Kilograms", "func": lambda x: x * 0.453592, "unit": "kg"},
+        "6": {"desc": "Kilograms to Pounds", "func": lambda x: x / 0.453592, "unit": "lb"}
+    }
+
+    while True:
+        print("\nUnit Converter")
+        for key, value in conversions.items():
+            print(f"{key}. {value['desc']}")
+        print("0. Exit")
+        choice = input("Choose an option: ")
+        if choice == "0":
+            print("Exiting program.")
+            break
+        elif choice in conversions:
+            try:
+                value = float(input("Enter value to convert: "))
+                result = conversions[choice]["func"](value)
+                unit = conversions[choice]["unit"]
+                print(f"Converted: {value} → {result:.2f} {unit}")
+            except ValueError:
+                print("Invalid number. Please enter a numeric value.")
+        else:
+            print("Invalid choice. Please select a valid option.")
+
+if __name__ == "__main__":
+    main()
